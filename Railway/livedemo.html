@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGo - Explore The World</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color: #222;
+            background-color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 28px;
+            background-color: #ff6b35;
+            color: white;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e95520;
+            transform: translateY(-3px);
+        }
+
+        .header {
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .logo span,
+        .footer-logo span {
+            color: #ff6b35;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+
+        .hero {
+            min-height: 650px;
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.45),
+                    rgba(0, 0, 0, 0.45)),
+                url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; 
+
+            position: relative;
+            padding: 80px 20px;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+        }
+
+        .hero-small-text {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #ff6b35;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: #222;
+        }
+
+        .search-box {
+            width: 90%;
+            max-width: 1000px;
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+
+            display: flex;
+            align-items: end;
+            gap: 15px;
+
+            position: absolute;
+            bottom: -50px;
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-item {
+            flex: 1;
+        }
+
+        .search-item label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .search-item input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .search-btn {
+            padding: 13px 25px;
+            border: none;
+            border-radius: 8px;
+            background-color: #ff6b35;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .search-btn:hover {
+            background-color: #ff6b35;
+
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title p,
+        .section-label {
+            color: #ff6b35;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .section-title h2 {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .section-title span {
+            color: #777;
+        }
+
+        .destinations {
+            padding-top: 150px;
+        }
+
+        .destination-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .destination-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .destination-card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .card-content p {
+            color: #777;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .card-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-bottom strong {
+            color: #ff6b35;
+            font-size: 20px;
+        }
+
+        .packages {
+            background-color: #f7f7f7;
+        }
+
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .package-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .package-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .package-image {
+            height: 250px;
+            position: relative;
+        }
+
+        .package-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .package-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: #ff6b35;
+            color: white;
+            padding: 7px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        .package-content {
+            padding: 25px;
+        }
+
+        .package-content h3 {
+            font-size: 23px;
+            margin-bottom: 8px;
+        }
+
+        .package-content p {
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .package-content ul {
+            list-style: none;
+            line-height: 2;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .package-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .package-bottom strong {
+            color: #ff6b35;
+            font-size: 24px;
+        }
+
+        .small-btn {
+            padding: 10px 18px;
+            font-size: 14px;
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+          
+        }
+
+        .about-content h2 {
+            font-size: 42px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .why-us {
+            background-color: #f7f7f7;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .feature-box {
+            background-color: white;
+            padding: 35px 25px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-8px);
+        }
+
+        .feature-icon {
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        .feature-box h3 {
+            margin-bottom: 12px;
+        }
+
+        .feature-box p {
+            color: #777;
+            line-height: 1.6;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .testimonial-card {
+            padding: 30px;
+            border-radius: 15px;
+            background-color: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .stars {
+            margin-bottom: 15px;
+        }
+
+        .testimonial-card p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-card h4 {
+            margin-bottom: 5px;
+        }
+
+        .testimonial-card span {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .newsletter {
+            padding: 80px 20px;
+            background-color: #ff6b35;
+            color: white;
+            text-align: center;
+        }
+
+        .newsletter-content {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .newsletter h2 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .newsletter p {
+            margin-bottom: 30px;
+        }
+
+        .subscribe-box {
+            background-color: white;
+            padding: 8px;
+            border-radius: 40px;
+            display: flex;
+        }
+
+        .subscribe-box input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 15px 20px;
+            border-radius: 30px;
+        }
+
+        .subscribe-box button {
+            border: none;
+            padding: 15px 25px;
+            border-radius: 30px;
+            background-color: #222;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .footer {
+            background-color: #151515;
+            color: white;
+            padding-top: 70px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr 1fr;
+            gap: 40px;
+            padding-bottom: 50px;
+        }
+
+        .footer-logo {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .footer-column p {
+            color: #aaa;
+            line-height: 1.7;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+        }
+
+        .footer-column a {
+            display: block;
+            color: #aaa;
+            margin-bottom: 12px;
+            transition: 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: #ff6b35;
+        }
+
+        .copyright {
+            border-top: 1px solid #333;
+            text-align: center;
+            padding: 20px;
+            color: #888;
+        }
+
+
+        @media (max-width: 992px) {
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .destination-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .package-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 768px) {
+
+            .nav {
+                height: auto;
+                padding: 20px 0;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-btn {
+                display: none;
+            }
+
+            .hero {
+                min-height: 750px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .search-box {
+                flex-direction: column;
+                align-items: stretch;
+                bottom: -180px;
+            }
+
+            .destinations {
+                padding-top: 230px;
+            }
+
+            .destination-grid,
+            .package-grid,
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+
+            .about-content h2 {
+                font-size: 32px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .subscribe-box {
+                flex-direction: column;
+                gap: 10px;
+                background: transparent;
+            }
+
+            .subscribe-box input {
+                width: 100%;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="container nav">
+
+            <div class="logo">
+                Travel<span>Go</span>
+            </div>
+
+            <nav>
+
+                <ul class="nav-links">
+
+                    <li>
+                        <a href="#home">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="#destinations">
+                            Destinations
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#packages">
+                            Packages
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#about">
+                            About
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#contact">
+                            Contact
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+            <a href="#packages" class="btn nav-btn">
+                Book Now
+            </a>
+
+        </div>
+
+    </header>
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <p class="hero-small-text">
+                Explore The World With Us
+            </p>
+
+            <h1>
+                Discover Your Next
+                <span>Adventure</span>
+            </h1>
+
+            <p class="hero-description">
+
+                Travel to beautiful destinations,
+                create unforgettable memories
+                and experience the world like never before.
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#destinations" class="btn">
+                    Explore Now
+                </a>
+
+                <a href="#packages" class="btn btn-outline">
+                    View Packages
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="search-box">
+
+            <div class="search-item">
+
+                <label>
+                    📍 Destination
+                </label>
+
+                <input type="text" placeholder="Where do you want to go?">
+
+            </div>
+
+
+            <div class="search-item">
+
+                <label>
+                    📅 Check In
+                </label>
+
+                <input type="date">
+
+            </div>
+
+
+            <div class="search-item">
+
+                <label>
+                    📅 Check Out
+                </label>
+
+                <input type="date">
+
+            </div>
+
+
+            <button class="search-btn">
+                Search
+            </button>
+
+        </div>
+
+    </section>
+
+    <section class="destinations section" id="destinations">
+
+        <div class="section-title">
+
+            <p>
+                TOP DESTINATIONS
+            </p>
+
+            <h2>
+                Explore Popular Places
+            </h2>
+
+            <span>
+                Discover amazing places around the world
+            </span>
+
+        </div>
+        <div class="destination-grid container">
+            <div class="destination-card">
+
+                <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80"
+                    alt="Goa">
+
+                <div class="card-content">
+
+                    <h3>
+                        Goa, India
+                    </h3>
+
+                    <p>
+                        Beaches, nightlife and beautiful sunsets.
+                    </p>
+
+                    <div class="card-bottom">
+
+                        <span>
+                            📍 Goa
+                        </span>
+
+                        <strong>
+                            Rs 699
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="destination-card">
+
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80"
+                    alt="Manali">
+
+                <div class="card-content">
+
+                    <h3>
+                        Manali, India
+                    </h3>
+
+                    <p>
+                        Mountains, snow and peaceful nature.
+                    </p>
+
+                    <div class="card-bottom">
+
+                        <span>
+                            📍 Himachal
+                        </span>
+
+                        <strong>
+                            Rs 555
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="destination-card">
+
+                <img src="images/photo-1667556759760-ac67d2cf8383.avif" alt="Delhi">
+
+                <div class="card-content">
+
+                    <h3>
+                        Delhi, India
+                    </h3>
+
+                    <p>
+                        Delhi, the capital of India has a strong historical background.
+                    </p>
+
+                    <div class="card-bottom">
+
+                        <span>
+                            📍 Delhi
+                        </span>
+
+                        <strong>
+                            Rs 899
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="destination-card">
+
+                <img src="images/photo-1661858435242-ed971767e954.avif" alt="Noida">
+
+                <div class="card-content">
+
+                    <h3>
+                        Noida, UP
+                    </h3>
+
+                    <p>
+                        Noida, a bustling city in Uttar Pradesh, India, is a hub of growth and development.
+                    </p>
+
+                    <div class="card-bottom">
+
+                        <span>
+                            📍 UP
+                        </span>
+
+                        <strong>
+                            Rs 999
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    >
+
+    <section class="packages section" id="packages">
+
+        <div class="section-title">
+
+            <p>
+                BEST PACKAGES
+            </p>
+
+            <h2>
+                Choose Your Perfect Trip
+            </h2>
+
+            <span>
+                Find the perfect travel package
+                for your next adventure
+            </span>
+
+        </div>
+
+
+        <div class="package-grid container">
+
+
+            <div class="package-card">
+
+                <div class="package-image">
+
+                    <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80"
+                        alt="Goa">
+
+                    <span class="package-tag">
+                        Popular
+                    </span>
+
+                </div>
+
+                <div class="package-content">
+
+                    <h3>
+                        Goa Beach Escape
+                    </h3>
+
+                    <p>
+                        4 Days / 3 Nights
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            ✓ Hotel Stay
+                        </li>
+
+                        <li>
+                            ✓ Breakfast
+                        </li>
+
+                        <li>
+                            ✓ Sightseeing
+                        </li>
+
+                    </ul>
+
+                    <div class="package-bottom">
+
+                        <strong>
+                            Rs 799
+                        </strong>
+
+                        <a href="#" class="btn small-btn">
+                            Book Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="package-card">
+
+                <div class="package-image">
+
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80"
+                        alt="Manali">
+
+                    <span class="package-tag">
+                        Trending
+                    </span>
+
+                </div>
+
+                <div class="package-content">
+
+                    <h3>
+                        Manali Adventure
+                    </h3>
+
+                    <p>
+                        5 Days / 4 Nights
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            ✓ Hotel Stay
+                        </li>
+
+                        <li>
+                            ✓ Breakfast
+                        </li>
+
+                        <li>
+                            ✓ Mountain Tour
+                        </li>
+
+                    </ul>
+
+                    <div class="package-bottom">
+
+                        <strong>
+                            Rs 599
+                        </strong>
+
+                        <a href="#" class="btn small-btn">
+                            Book Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="package-card">
+
+                <div class="package-image">
+
+                    <img src="images/photo-1699630923504-9a24dbaab37c.avif" alt="Banaras">
+
+                    <span class="package-tag">
+                        Premium
+                    </span>
+
+                </div>
+
+                <div class="package-content">
+
+                    <h3>
+                        Banaras Mahadev Nagri
+                    </h3>
+
+                    <p>
+                        7 Days / 6 Nights
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            ✓ Luxury Hotel
+                        </li>
+
+                        <li>
+                            ✓ Breakfast
+                        </li>
+
+                        <li>
+                            ✓ City Tour
+                        </li>
+
+                    </ul>
+
+                    <div class="package-bottom">
+
+                        <strong>
+                            Rs 899
+                        </strong>
+
+                        <a href="#" class="btn small-btn">
+                            Book Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="about section" id="about">
+
+        <div class="about-container container">
+
+            <div class="about-image">
+
+                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1000&q=80"
+                    alt="Travel">
+
+            </div>
+
+
+            <div class="about-content">
+
+                <p class="section-label">
+                    ABOUT TRAVELGO
+                </p>
+
+                <h2>
+                    We Make Your Travel
+                    Dreams Come True
+                </h2>
+
+                <p>
+
+                    TravelGo is your trusted travel partner.
+                    We help travelers discover beautiful
+                    destinations and create unforgettable memories.
+
+                </p>
+
+                <p>
+
+                    From exciting adventures to relaxing holidays,
+                    we provide carefully planned travel experiences
+                    for everyone.
+
+                </p>
+
+                <a href="#contact" class="btn">
+                    Learn More
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+    <section class="why-us section">
+
+        <div class="section-title">
+
+            <p>
+                WHY CHOOSE US
+            </p>
+
+            <h2>
+                Travel With Confidence
+            </h2>
+
+        </div>
+
+
+        <div class="features container">
+
+
+            <div class="feature-box">
+
+                <div class="feature-icon">
+                    ✈️
+                </div>
+
+                <h3>
+                    Best Destinations
+                </h3>
+
+                <p>
+                    Explore the most beautiful destinations
+                    around the world.
+                </p>
+
+            </div>
+
+
+
+            <div class="feature-box">
+
+                <div class="feature-icon">
+                    💰
+                </div>
+
+                <h3>
+                    Best Prices
+                </h3>
+
+                <p>
+                    Get affordable travel packages
+                    without compromising quality.
+                </p>
+
+            </div>
+
+
+
+            <div class="feature-box">
+
+                <div class="feature-icon">
+                    🛡️
+                </div>
+
+                <h3>
+                    Safe Travel
+                </h3>
+
+                <p>
+                    Your safety and comfort are always
+                    our top priority.
+                </p>
+
+            </div>
+
+
+
+            <div class="feature-box">
+
+                <div class="feature-icon">
+                    🤝
+                </div>
+
+                <h3>
+                    24/7 Support
+                </h3>
+
+                <p>
+                    Our travel experts are always ready
+                    to help you.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="testimonial section">
+
+        <div class="section-title">
+
+            <p>
+                TESTIMONIALS
+            </p>
+
+            <h2>
+                What Our Travelers Say
+            </h2>
+
+        </div>
+
+
+        <div class="testimonial-grid container">
+
+
+            <div class="testimonial-card">
+
+                <div class="stars">
+                    ⭐⭐⭐⭐⭐
+                </div>
+
+                <p>
+                    "Amazing experience! Everything was
+                    perfectly planned. I had a wonderful
+                    trip with TravelGo."
+                </p>
+
+                <h4>
+                    Sagar Sharma
+                </h4>
+
+                <span>
+                    Delhi, India
+                </span>
+
+            </div>
+
+
+
+            <div class="testimonial-card">
+
+                <div class="stars">
+                    ⭐⭐⭐⭐⭐
+                </div>
+
+                <p>
+                    "The best travel experience I have ever
+                    had. The service was excellent and
+                    the trip was unforgettable."
+                </p>
+
+                <h4>
+                    Vivek Sinha
+                </h4>
+
+                <span>
+                    Mumbai, India
+                </span>
+
+            </div>
+            <div class="testimonial-card">
+
+                <div class="stars">
+                    ⭐⭐⭐⭐⭐
+                </div>
+                <p>
+                    "Very affordable packages and excellent
+                    support. Highly recommended for anyone
+                    who loves travelling."
+                </p>
+
+                <h4>
+                    Nishant Kumar
+                </h4>
+
+                <span>
+                    Kolkata, India
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="newsletter">
+
+        <div class="newsletter-content">
+
+            <h2>
+                Get Travel Inspiration
+            </h2>
+
+            <p>
+                Subscribe to our newsletter and get
+                the latest travel deals and updates.
+            </p>
+
+            <div class="subscribe-box">
+
+                <input type="email" placeholder="Enter your email">
+
+                <button>
+                    Subscribe
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+    <footer class="footer" id="contact">
+        <div class="footer-container container">
+
+            <div class="footer-column">
+
+                <h2 class="footer-logo">
+                    Travel<span>Go</span>
+                </h2>
+
+                <p>
+                    Explore the world with us and
+                    create memories that last forever.
+                </p>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#destinations">
+                    Destinations
+                </a>
+
+                <a href="#packages">
+                    Packages
+                </a>
+
+                <a href="#about">
+                    About Us
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Contact
+                </h3>
+
+                <p>
+                    📍 Kolkata, India
+                </p>
+
+                <p>
+
+                    📞 +91 9546588860
+                </p>
+
+                <p>
+                    📧 info@travelgo.com
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Follow Us
+                </h3>
+
+                <a href="#">
+                    Facebook
+                </a>
+
+                <a href="#">
+                    Instagram
+                </a>
+
+                <a href="#">
+                    Twitter
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            <p>
+                @ 2026 TravelGo. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>
